@@ -118,3 +118,42 @@ fuc_ptr_ptr p   //p为指向函数指针的指针
       e.g. typedef int a[10]    即表示 a为具有10个int元素的数组的别名
 	  e.g. typedef void(*p)(void)  即表示p为指向函数指针的别名
 
+> 25.构造函数分两个阶段执行（1）：初始化阶段；（2）普通的计算阶段 。计算阶段则由构造函数体中的所有语句组成。
+
+> 26.如果没有为类成员提供初始化式，则编译器会隐式的使用成员类型的默认构造函数。如果那个类没有默认构造函数，则编译器尝试使用默认构造函数将会失败。
+
+> 27.构造函数初始化列表不决定初始化的顺序，成员被初始化的次序就是定义成员的次序。
+
+> 28.抑制由构造函数定义的隐式转换
+
+```
+class Sale_item{
+public: 
+     Sale_item(const std::string &book=' ');
+     {}
+     Sale_item(std::istream &is);
+     bool same_isbn(Sale_item new){}
+     };
+ string null_book ="9-999-9999-9";
+ item.same_isbn(null_book);      //这段程序使用一个string类型对象作为实参传给Sales_item的same_isbn函数。该函数期待
+ //一个Sale_item对象作为实参。所以编译器会通过隐式转换，使用一个接受string的Sale_item构造函数从null_book生成一个新的
+ //sale_item对象。新生成的（临时的）Sale_item被传递给same_isbn。这个Sale_item对象是一个临时对象。一旦same_isbn函数结束，
+ //就不能再访问它，实际上，我们构造了一个测试完就会被丢弃的对象。
+ //正确做法：
+ class Sale_item{
+public: 
+     explicit Sale_item(const std::string &book=' ');
+     {}
+     explicit Sale_item(std::istream &is);
+     bool same_isbn(Sale_item new){}
+     };
+ ```
+> 29.友元可以是普通的非成员函数，或前面定义的其他类的成员函数，或整个类。将一个类设为友元，友元类的所有成员函数都可以访问授予友元关系的那个类的非公有成员。
+```
+class Screen{
+    friend class Window_Mgr;
+    friend Window_Mgr&
+       Window_Mgr::relocate(Window_Mgr::index,Window_Mgr::index,Screen&);
+       };
+       ```
+       
