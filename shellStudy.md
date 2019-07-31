@@ -95,5 +95,6 @@ lengthn-${#alist[2]}   //获取alist[2]的长度
 4、将testfile1中的” (root)” 替换成supperuser，保存为testfile2
 -------------------------------------------------------------
 ```
-grep root /var/log/messages > /home/shenpeng/shellStudy
+2.grep root /var/log/messages > /home/shenpeng/shellHomework
+4.sed -i 's/root/supperuser/g' shellHomework
 ```
