@@ -65,7 +65,7 @@
   int *pi3;      //ok but dangerous,pi3 is uninitialized
   pi = pi2;     //pi and pi2 address the same object
   pi2=0;      //pi2 now address no object
-  
+  ```
 > 16.C++定义了算数类型之间的内置转换以尽可能防止精度损失。  
      何时发生隐式类型转换
 	 - 在混合类型的表达式中，其操作数被转换为相同的类型
